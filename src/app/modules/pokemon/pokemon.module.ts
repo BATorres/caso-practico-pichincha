@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 
 import { PokemonRoutingModule } from './pokemon-routing.module';
 import { PokemonComponent } from './components/pokemon/pokemon.component';
@@ -11,7 +12,8 @@ import { PokemonComponent } from './components/pokemon/pokemon.component';
   ],
   imports: [
     CommonModule,
-    PokemonRoutingModule
+    PokemonRoutingModule,
+    HttpClientModule,
   ]
 })
 export class PokemonModule { }

@@ -1,1 +1,42 @@
-<p>pokemon works!</p>
+<div class="container container-fluid">
+  <h2>Listado de pokemones</h2>
+  <div class="row">
+    <div class="col-8">Aquí búsqueda</div>
+    <div class="col-4">Aquí botón</div>
+  </div>
+
+  <div class="row">
+    <table>
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Imagen</th>
+          <th>Ataque</th>
+          <th>Defensa</th>
+          <th>Acciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let pokemon of pokemons">
+          <td>
+            {{ pokemon.name }}
+          </td>
+          <td>
+            <img
+              src="{{ pokemon.image }}"
+              alt="{{ pokemon.name }}-image"
+              style="max-width: 150px"
+            />
+          </td>
+          <td>
+            {{ pokemon.attack }}
+          </td>
+          <td>
+            {{ pokemon.defense }}
+          </td>
+          <td>Aquí acciones</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
