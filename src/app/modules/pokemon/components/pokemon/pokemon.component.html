@@ -2,7 +2,12 @@
   <h2>Listado de pokemones</h2>
   <div class="row">
     <div class="col-8">
-        <input class="form-control" type="text" placeholder="Busque un pokemon por su nombre" (keyup)="searchPokemons($event)">
+      <input
+        class="form-control"
+        type="text"
+        placeholder="Busque un pokemon por su nombre"
+        (keyup)="searchPokemons($event)"
+      />
     </div>
     <div class="col-3"></div>
     <div class="col-1">
@@ -17,7 +22,9 @@
     <table class="table-light">
       <thead>
         <tr>
-          <th *ngFor="let header of tableHeader" class="text-center">{{ header }}</th>
+          <th *ngFor="let header of tableHeader" class="text-center">
+            {{ header }}
+          </th>
         </tr>
       </thead>
       <tbody>
@@ -39,8 +46,10 @@
             {{ pokemon.defense }}
           </td>
           <td class="text-center">
-              <button class="btn btn-global">Editar</button>
-              <button class="btn btn-global">Eliminar</button>
+            <button class="btn btn-global" (click)="editPokemon(pokemon)">
+              Editar
+            </button>
+            <button class="btn btn-global">Eliminar</button>
           </td>
         </tr>
       </tbody>
@@ -49,7 +58,7 @@
 
   <div class="row pb-5" *ngIf="showForm">
     <div class="col-12">
-      <pokemon-form></pokemon-form>
+      <pokemon-form [pokemon]="selectedPokemon"></pokemon-form>
     </div>
   </div>
 </div>

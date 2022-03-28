@@ -11,6 +11,7 @@ export class PokemonComponent implements OnInit {
   public pokemons: any[] = [];
   public tableHeader: string[] = ['Nombre', 'Imagen', 'Ataque', 'Defensa', 'Acciones'];
   public showForm: boolean = false;
+  public selectedPokemon: any;
 
   constructor(
     private _pokemonService: PokemonService,
@@ -43,7 +44,14 @@ export class PokemonComponent implements OnInit {
   }
 
   public createPokemon(): any {
+    this.showForm = true;
+    this.selectedPokemon = undefined;
     window.scroll(0, this.scrollContainer.nativeElement.scrollHeight);
-    return this.showForm = !this.showForm;
+  }
+
+  public editPokemon(pokemon: any): any {
+    this.selectedPokemon = pokemon;
+    this.showForm = true;
+    window.scroll(0, this.scrollContainer.nativeElement.scrollHeight);
   }
 }

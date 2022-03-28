@@ -1,7 +1,7 @@
 <div class="card">
   <div class="row">
     <div class="col-12 text-center">
-      <h3>Nuevo pokemon</h3>
+      <h3>{{ pokemon !== undefined ? 'Editar' : 'Nuevo' }} pokemon</h3>
     </div>
   </div>
 
@@ -44,7 +44,6 @@
               class="form-range"
               formControlName="attack"
               min="1"
-              max="100"
               [ngClass]="{ 'is-invalid': fc['attack'].errors }"
             />
             {{ fc["attack"].value }}
@@ -84,7 +83,6 @@
               class="form-range"
               formControlName="defense"
               min="1"
-              max="100"
               [ngClass]="{ 'is-invalid': fc['defense'].errors }"
             />
             {{ fc["defense"].value }}
