@@ -13,7 +13,7 @@
     </div>
   </div>
 
-  <div class="row pt-5">
+  <div class="row pt-5 pb-5">
     <table class="table-light">
       <thead>
         <tr>
@@ -47,9 +47,9 @@
     </table>
   </div>
 
-  <div id="pokemonForm" class="row" *ngIf="showForm">
+  <div class="row pb-5" *ngIf="showForm">
     <div class="col-12">
-      Aquí formulario
+      <pokemon-form></pokemon-form>
     </div>
   </div>
 </div>
