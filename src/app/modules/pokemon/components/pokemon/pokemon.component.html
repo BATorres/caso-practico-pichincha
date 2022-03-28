@@ -6,7 +6,7 @@
         class="form-control"
         type="text"
         placeholder="Busque un pokemon por su nombre"
-        (keyup)="searchPokemons($event)"
+        [(ngModel)]="searchQuery"
       />
     </div>
     <div class="col-3"></div>
@@ -28,7 +28,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let pokemon of pokemons">
+        <tr *ngFor="let pokemon of pokemons | searchFilter: searchQuery">
           <td>
             {{ pokemon.name }}
           </td>

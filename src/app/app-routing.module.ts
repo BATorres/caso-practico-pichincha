@@ -6,12 +6,12 @@ const routes: Routes = [
     path: 'pokemon',
     loadChildren: () =>
       import('./modules/pokemon/pokemon.module').then(
-        (module) => module.PokemonModule
+        (m) => m.PokemonModule,
       ),
   },
   {
     path: '**',
-    redirectTo: 'pokemon',
+    redirectTo: '/pokemon',
   },
 ];
 

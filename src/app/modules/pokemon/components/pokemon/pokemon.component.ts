@@ -12,6 +12,7 @@ export class PokemonComponent implements OnInit {
   public tableHeader: string[] = ['Nombre', 'Imagen', 'Ataque', 'Defensa', 'Acciones'];
   public showForm: boolean = false;
   public selectedPokemon: any;
+  public searchQuery: string;
 
   constructor(
     private _pokemonService: PokemonService,
@@ -32,16 +33,16 @@ export class PokemonComponent implements OnInit {
     );
   }
 
-  public searchPokemons(event: any): void {
+  /* public searchPokemons(event: any): void {
     const search = event.target.value.toLowerCase().trim();
 
     if (search !== '') {
-      /* const filteredPokemons = [...this.pokemons];
-      this.pokemons = filteredPokemons.filter((pokemon) => pokemon.name.toLowerCase().includes(search)); */
+      const filteredPokemons = [...this.pokemons];
+      this.pokemons = filteredPokemons.filter((pokemon) => pokemon.name.toLowerCase().includes(search));
     } else {
       this.getAllPokemons();
     }
-  }
+  } */
 
   public createPokemon(): any {
     this.showForm = true;

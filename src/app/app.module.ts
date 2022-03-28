@@ -8,7 +8,7 @@ import { PokemonService } from './services/pokemon.service';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
