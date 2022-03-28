@@ -1,0 +1,27 @@
+table {
+  border-collapse: collapse;
+  width: 100%;
+  table-layout: fixed;
+}
+
+td,
+th {
+  border: 1px solid #b4b4b4;
+  color: #0d0d0d;
+  position: relative;
+  text-align: left;
+  width: 33.33%;
+}
+
+td {
+  padding-left: 15px;
+}
+
+th {
+  padding-bottom: 10px;
+  padding-top: 10px;
+}
+
+button {
+  margin-left: 5%;
+}

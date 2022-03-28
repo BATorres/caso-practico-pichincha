@@ -1,19 +1,23 @@
-<div class="container container-fluid">
+<div #scrollContainer class="container">
   <h2>Listado de pokemones</h2>
   <div class="row">
-    <div class="col-8">Aquí búsqueda</div>
-    <div class="col-4">Aquí botón</div>
+    <div class="col-8">
+        <input class="form-control" type="text" placeholder="Busque un pokemon por su nombre" (keyup)="searchPokemons($event)">
+    </div>
+    <div class="col-3"></div>
+    <div class="col-1">
+      <button class="btn btn-global text-center" (click)="createPokemon()">
+        <a href="pokemonForm"></a>
+        + Nuevo
+      </button>
+    </div>
   </div>
 
-  <div class="row">
-    <table>
+  <div class="row pt-5">
+    <table class="table-light">
       <thead>
         <tr>
-          <th>Nombre</th>
-          <th>Imagen</th>
-          <th>Ataque</th>
-          <th>Defensa</th>
-          <th>Acciones</th>
+          <th *ngFor="let header of tableHeader" class="text-center">{{ header }}</th>
         </tr>
       </thead>
       <tbody>
@@ -21,7 +25,7 @@
           <td>
             {{ pokemon.name }}
           </td>
-          <td>
+          <td class="text-center">
             <img
               src="{{ pokemon.image }}"
               alt="{{ pokemon.name }}-image"
@@ -34,9 +38,18 @@
           <td>
             {{ pokemon.defense }}
           </td>
-          <td>Aquí acciones</td>
+          <td class="text-center">
+              <button class="btn btn-global">Editar</button>
+              <button class="btn btn-global">Eliminar</button>
+          </td>
         </tr>
       </tbody>
     </table>
+  </div>
+
+  <div id="pokemonForm" class="row" *ngIf="showForm">
+    <div class="col-12">
+      Aquí formulario
+    </div>
   </div>
 </div>
