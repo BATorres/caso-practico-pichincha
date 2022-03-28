@@ -49,7 +49,7 @@
             <button class="btn btn-global" (click)="editPokemon(pokemon)">
               Editar
             </button>
-            <button class="btn btn-global">Eliminar</button>
+            <button class="btn btn-global" (click)="deletePokemon(pokemon)">Eliminar</button>
           </td>
         </tr>
       </tbody>
@@ -58,7 +58,7 @@
 
   <div class="row pb-5" *ngIf="showForm">
     <div class="col-12">
-      <pokemon-form [pokemon]="selectedPokemon"></pokemon-form>
+      <pokemon-form [pokemon]="selectedPokemon" (successEvent)="listenComponent($event)" (cancelEvent)="listenCancelEvent($event)"></pokemon-form>
     </div>
   </div>
 </div>

@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { PokemonService } from '../../../../services/pokemon.service';
 
@@ -9,6 +9,9 @@ import { PokemonService } from '../../../../services/pokemon.service';
 })
 export class FormComponent implements OnChanges {
   @Input() public pokemon: any;
+  @Output() public successEvent: EventEmitter<any | boolean> = new EventEmitter();
+  @Output() public cancelEvent: EventEmitter<boolean> = new EventEmitter();
+
   public form: FormGroup;
 
   constructor(
@@ -30,6 +33,9 @@ export class FormComponent implements OnChanges {
       image: [null, Validators.required],
       attack: [50, Validators.required],
       defense: [50, Validators.required],
+      hp: 50,
+      type: 'fire',
+      idAuthor: 1,
     });
   }
 
@@ -40,22 +46,28 @@ export class FormComponent implements OnChanges {
   public submit(): void {
     if (this.pokemon !== undefined) {
       this._pokemonService.updatePokemon(this.pokemon.id, this.form.value).subscribe(
-        (res) => {
-          console.log('res', res)
+        (editedPokemon) => {
+          this.successEvent.emit(editedPokemon);
         },
         (error) => {
-          console.error('error', error)
+          this.successEvent.emit(false);
+          console.error('error', error);
         }
       );
     } else {
-      this._pokemonService.savePokemon({...this.form.value, hp: 0, type: 'fire', idAuthor: 1}).subscribe(
-        (res) => {
-          console.log('res', res)
+      this._pokemonService.savePokemon(this.form.value).subscribe(
+        (createdPokemon) => {
+          this.successEvent.emit(createdPokemon);
         },
         (error) => {
-          console.error('error', error)
+          this.successEvent.emit(false);
+          console.error('error', error);
         }
       );
     }
+  }
+
+  public cancel(): void {
+    this.cancelEvent.emit(true);
   }
 }

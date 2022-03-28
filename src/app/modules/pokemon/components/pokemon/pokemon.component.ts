@@ -54,4 +54,38 @@ export class PokemonComponent implements OnInit {
     this.showForm = true;
     window.scroll(0, this.scrollContainer.nativeElement.scrollHeight);
   }
+
+  public deletePokemon(currentPokemon: any): any {
+    const index = this.pokemons.findIndex((pokemon) => pokemon.id === currentPokemon.id);
+
+    if (index !== -1) {
+      this.pokemons.splice(index, 1);
+      this._pokemonService.deletePokemon(currentPokemon.id).subscribe(
+        (deletedPokemon) => {},
+        (error) => {
+          console.error('error', error);
+        }
+      );
+    }
+  }
+
+  public listenComponent(event): any {
+    if (event) {
+      const index = this.pokemons.findIndex((pokemon) => pokemon.id === event.id);
+      this.showForm = false;
+
+      if (index !== -1) {
+        this.pokemons[index] = event;
+      } else {
+        this.pokemons.push(event);
+      }
+    }
+  }
+
+  public listenCancelEvent(event): any {
+    if (event) {
+      this.showForm = false;
+      window.scroll(0, 0);
+    }
+  }
 }
