@@ -1,0 +1,64 @@
+<div #scrollContainer class="container">
+  <h2>Listado de pokemones</h2>
+  <div class="row">
+    <div class="col-8">
+      <input
+        class="form-control"
+        type="text"
+        placeholder="Busque un pokemon por su nombre"
+        [(ngModel)]="searchQuery"
+      />
+    </div>
+    <div class="col-3"></div>
+    <div class="col-1">
+      <button class="btn btn-global text-center" (click)="createPokemon()">
+        <a href="pokemonForm"></a>
+        + Nuevo
+      </button>
+    </div>
+  </div>
+
+  <div class="row pt-5 pb-5">
+    <table class="table-light">
+      <thead>
+        <tr>
+          <th *ngFor="let header of tableHeader" class="text-center">
+            {{ header }}
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let pokemon of pokemons | searchFilter: searchQuery">
+          <td>
+            {{ pokemon.name }}
+          </td>
+          <td class="text-center">
+            <img
+              src="{{ pokemon.image }}"
+              alt="{{ pokemon.name }}-image"
+              style="max-width: 150px"
+            />
+          </td>
+          <td>
+            {{ pokemon.attack }}
+          </td>
+          <td>
+            {{ pokemon.defense }}
+          </td>
+          <td class="text-center">
+            <button class="btn btn-global" (click)="editPokemon(pokemon)">
+              Editar
+            </button>
+            <button class="btn btn-global" (click)="deletePokemon(pokemon)">Eliminar</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="row pb-5" *ngIf="showForm">
+    <div class="col-12">
+      <pokemon-form [pokemon]="selectedPokemon" (successEvent)="listenComponent($event)" (cancelEvent)="listenCancelEvent($event)"></pokemon-form>
+    </div>
+  </div>
+</div>

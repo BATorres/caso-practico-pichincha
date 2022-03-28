@@ -1,0 +1,108 @@
+<div class="card">
+  <div class="row">
+    <div class="col-12 text-center">
+      <h3>{{ pokemon !== undefined ? 'Editar' : 'Nuevo' }} pokemon</h3>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <form
+        [formGroup]="form"
+        (ngSubmit)="submit()"
+        novalidate
+        autocomplete="off"
+      >
+        <div class="row">
+          <div class="col-1"></div>
+          <div class="col-4">
+            <label>Nombre:</label>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Ingresa el nombre"
+              formControlName="name"
+              [ngClass]="{ 'is-invalid': form.invalid && fc['name'].errors }"
+            />
+            <div
+              *ngIf="form.invalid && fc['name'].errors"
+              class="invalid-feedback"
+            >
+              <div *ngIf="fc['name'].errors['required']">
+                El nombre es obligatorio
+              </div>
+            </div>
+          </div>
+
+          <div class="col-2"></div>
+
+          <div class="col-4">
+            <label>Ataque: </label>
+            0
+            <input
+              type="range"
+              class="form-range"
+              formControlName="attack"
+              min="1"
+              [ngClass]="{ 'is-invalid': fc['attack'].errors }"
+            />
+            {{ fc["attack"].value }}
+            <div *ngIf="fc['attack'].errors" class="invalid-feedback">
+              <div *ngIf="fc['attack'].errors['required']">
+                El ataque es obligatorio
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row pt-3 pb-5">
+          <div class="col-1"></div>
+          <div class="col-4">
+            <label>Imagen</label>
+            <input
+              type="text"
+              class="form-control"
+              placeholder="Ingresa la url de la imagen"
+              formControlName="image"
+              [ngClass]="{ 'is-invalid': fc['image'].errors }"
+            />
+            <div *ngIf="fc['image'].errors" class="invalid-feedback">
+              <div *ngIf="fc['image'].errors['required']">
+                La url de la imagen es obligatoria
+              </div>
+            </div>
+          </div>
+
+          <div class="col-2"></div>
+
+          <div class="col-4 text-center">
+            <label>Defensa: </label>
+            0
+            <input
+              type="range"
+              class="form-range"
+              formControlName="defense"
+              min="1"
+              [ngClass]="{ 'is-invalid': fc['defense'].errors }"
+            />
+            {{ fc["defense"].value }}
+            <div *ngIf="fc['defense'].errors" class="invalid-feedback">
+              <div *ngIf="fc['defense'].errors['required']">
+                La defensa es obligatoria
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row pb-3">
+          <div class="col-12 text-center">
+            <button type="submit" class="btn btn-global" [disabled]="form.invalid">
+              ✓ Guardar
+            </button>
+            <button type="button" class="btn btn-global" (click)="cancel()">x Cancelar</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
